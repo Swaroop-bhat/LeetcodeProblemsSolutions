@@ -1,0 +1,28 @@
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        first = None
+        second = None
+        third = None
+
+        if len(nums) == 1:
+            return nums[0]
+        elif len(nums) == 2:
+            return max(nums)
+        
+        for num in nums:
+            if num == first or num == second or num == third:
+                continue
+                
+            if first is None or num > first:
+                third = second
+                second = first
+                first = num
+
+            elif second is None or num > second:
+                third = second
+                second = num
+
+            elif third is None or num > third:
+                third = num
+
+        return third if third is not None else first
